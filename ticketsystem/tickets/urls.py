@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from tickets import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+     path('', views.home, name="home"),
+    #Ticket Management
+    path('ticket/create-ticket', views.create_ticket, name="create_ticket"),
+
 ]
