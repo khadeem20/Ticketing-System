@@ -2,8 +2,8 @@
 
 {% block content%}
 
-<div class="container text-center pt-5">
-    <div class="">
+<div class="container text-center py-5">
+    <div class="py-5">
         <h1 class="">Welcome to [App Name]</h1>
         <p class="lead">Your efficient ticket management system!</p>
     </div>
@@ -75,9 +75,9 @@
         </div>
     </div>
 
-    <div class=" my-3">
-        <a href="/login" class="btn btn-primary btn-lg">Sign in to Get Started</a>
-        <a href="/signup" class="btn btn-secondary btn-lg ml-3">Sign Up Now</a>
+    <div class=" my-5">
+        <a href="{% url 'login-page' %}" class="btn btn-primary btn-lg">Sign in to Get Started</a>
+        <a href="{% url 'signup-page' %}" class="btn btn-secondary btn-lg ml-3">Sign Up Now</a>
     </div>
     
 </div>

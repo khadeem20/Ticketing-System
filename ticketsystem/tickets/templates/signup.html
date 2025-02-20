@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<section class="vh-100 d-flex align-items-center my-5 py-5" id="signup">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4 bg-light text-center shadow-sm">
+                <h2 class="py-3 ">Signup Form</h2>
+                <form action="" id="signup-form" method="post">
+                    {% csrf_token %}
+                    <div class="py-3">
+                        <label for="first-name" class="form-label">First Name</label>
+                        <input type="text" name="first-name" class="form-control" id="first-name">
+                    </div>
+                    
+                    <div class="py-3">
+                        <label for="last-name" class="form-label">Last Name</label>
+                        <input type="text" name="last-name" id="last-name" class="form-control">
+                    </div>
+                    
+                    <div class="py-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username">
+                    </div>
+
+                    <div class="py-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
+
+                    <div class="py-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="@something.com">
+                        
+                    </div>
+
+                    <div class="py-3">
+
+                    </div>
+
+                    
+                </form>
+                <a type="submit" class=" my-2 btn btn-primary btn-lg">Submit</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
