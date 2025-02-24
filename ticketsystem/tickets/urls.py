@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
     path("ticket/login", views.login_page, name="login-page"),
-     path("ticket/signup", views.signup_page, name="signup-page"),
+    path("ticket/signup", views.signup_page, name="signup-page"),
+    path("dashboard", views.dashboard, name="dashbaord"),
     #Ticket Management
     path('ticket/create-ticket', views.create_ticket, name="create_ticket"),
 
