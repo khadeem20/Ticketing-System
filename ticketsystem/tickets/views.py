@@ -43,6 +43,7 @@ def dashboard(request):
     }
     return render(request, "dashboard.html", context)
 
+@login_required
 def ticket_management(request):
     tickets = Ticket.objects.filter(
         created_by = request.user

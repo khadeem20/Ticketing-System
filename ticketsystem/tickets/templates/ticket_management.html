@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
 
 
@@ -31,7 +32,18 @@
             <tbody>
                 {% for ticket in tickets %}
                 <tr class="text-center">
-                    <td><a href="" class="text-decoration-none">{{ ticket.title }}</a></td>
+                    <td><a href="#" 
+                        class="text-decoration-none open-ticket-modal"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#ticketDetailsModal"
+                        data-title="{{ ticket.title }}"
+                        data-priority="{{ ticket.get_priority_display }}"
+                        data-status="{{ ticket.status }}"
+                        data-assigned="{{ ticket.assigned_to }}"
+                        data-date="{{ ticket.created_date }}"
+                        data-description="{{ ticket.description }}">
+                         {{ ticket.title }}
+                     </a></td>
                     <td><span class="badge bg-info text-white">{{ ticket.status }}</span></td>
                     <td><span class="badge bg-danger text-white">{{ ticket.get_priority_display}}</span></td>
                     <td>{{ ticket.assigned_to }}</td>
@@ -51,6 +63,49 @@
         {% endif %}
     </div>
 </section>
+
+<div class="modal" id="ticketDetailsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ticket Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p><strong>Title:</strong> <span id="modalTitle"></span></p>
+                  <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <p><strong>Priority:</strong> <span id="modalPriority"></span></p>
+                                <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+                            </div>
+                            <p><strong>Assigned To:</strong> <span id="modalAssigned"></span></p>
+                            <p><strong>Created Date:</strong> <span id="modalDate"></span></p>
+                            <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+                        </div>
+                    </div>
+                  </div>
+
+            </div>
+
+            <div class="modal-footer d-flex justify-content-center">
+                <a href="" class="btn btn-secondary">Edit</a>
+                <a href="" class="btn btn-secondary">Resolve</a>
+                <a href="" class=" bg-danger btn btn-secondary">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 <div class="modal fade" id="createTicketModal" tabindex="-1">
@@ -100,3 +155,7 @@
 
 
 {% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/ticket-management.js' %}"></script>
+{% endblock%}
