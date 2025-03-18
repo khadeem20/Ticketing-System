@@ -34,10 +34,10 @@ class Ticket(models.Model):
 
 
     PRIORITY_CHOICES = [
-        ('LOW', 'Low'),
-        ('MEDIUM', 'Medium'),
-        ('HIGH', 'High'),
-        ('URGENT', 'Urgent')
+        ('4', 'Low'),
+        ('3', 'Medium'),
+        ('2', 'High'),
+        ('1', 'Urgent')
     ]
 
     title= models.CharField(max_length=200)
@@ -50,7 +50,7 @@ class Ticket(models.Model):
     assigned_to = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_tickets')
 
     def __str__(self):
-        return f"{self.tile} - {self.status}"
+        return f"{self.title} - {self.status}"
     
 class Comment(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='comments')

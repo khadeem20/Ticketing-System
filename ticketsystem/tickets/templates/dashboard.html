@@ -4,8 +4,7 @@
 <section class="container-fluid" id="dashboard-cover">
 
     <div class="text-center">
-        <h4> Welcome {{user.username}}</h4>
-
+        <h4> Welcome {{user}}</h4>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         <div class="card col shadow bg-primary ">
@@ -45,12 +44,12 @@
 
         <tbody>
             {% for ticket in lastest_tickets %}
-            <tr>
-                <td><a href="" class="text-decoration-none">>ticket.title</a></td>
-                <td>{{ticket.status}}</td>
-                <td>{{ticket.priority}}</td>
-                <td>{{ticket.assigned_to}}</td>
-                <td>{{ticket.created_date}}</td>
+            <tr class="text-center">
+                <td><a href="" class="text-decoration-none">{{ ticket.title }}</a></td>
+                <td><span class="badge bg-info text-white">{{ ticket.status }}</span></td>
+                <td><span class="badge bg-danger text-white">{{ ticket.priority }}</span></td>
+                <td>{{ ticket.assigned_to }}</td>
+                <td>{{ ticket.created_date }}</td>
             </tr>
             {% endfor %}
             

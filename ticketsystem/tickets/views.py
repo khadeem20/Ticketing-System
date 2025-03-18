@@ -7,6 +7,22 @@ from tickets.models import Ticket
 def home(request):
     return render(request,"home.html")
 
+def login_page(request):
+    if request.method == 'POST':
+        username=request.POST['username']
+        password= request.POST['password']
+        user= authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Invalid username or password')
+
+    return render(request, "login.html")
+def signup_page(request):
+    return render(request, "signup.html")
+
 def dashboard(request):
     tickets = Ticket.objects.filter(
         created_by = request.user
@@ -26,21 +42,17 @@ def dashboard(request):
         'lastest_tickets': latest_tickets
     }
     return render(request, "dashboard.html", context)
-def login_page(request):
-    if request.method == 'POST':
-        username=request.POST['username']
-        password= request.POST['password']
-        user= authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('dashboard')
-        else:
-            messages.error(request, 'Invalid username or password')
+def ticket_management(request):
+    tickets = Ticket.objects.filter(
+        created_by = request.user
+    ).order_by('created_date')
 
-    return render(request, "login.html")
-def signup_page(request):
-    return render(request, "signup.html")
+    context = {
+        'user': request.user.username,
+        'tickets': tickets
+    }
+    return render(request, "ticket_management.html", context)
 
 
 
